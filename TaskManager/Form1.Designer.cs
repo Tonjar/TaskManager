@@ -61,7 +61,6 @@
             this.check_task = new System.Windows.Forms.Timer(this.components);
             this.updown_button = new System.Windows.Forms.Button();
             this.person_pic = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Main_container.SuspendLayout();
             this.Head_part.SuspendLayout();
             this.task_panel.SuspendLayout();
@@ -430,11 +429,6 @@
             this.person_pic.TabStop = false;
             this.person_pic.Click += new System.EventHandler(this.person_pic_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -442,6 +436,7 @@
             this.ClientSize = new System.Drawing.Size(477, 462);
             this.ControlBox = false;
             this.Controls.Add(this.Main_container);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -451,6 +446,7 @@
             this.ShowInTaskbar = false;
             this.Tag = "1";
             this.Text = "TaskManager";
+            this.TopMost = true;
             this.Deactivate += new System.EventHandler(this.Main_form_Deactivate);
             this.SizeChanged += new System.EventHandler(this.Main_form_SizeChanged);
             this.Leave += new System.EventHandler(this.Main_form_Leave);
@@ -506,7 +502,6 @@
         private System.Windows.Forms.PictureBox person_pic;
         private System.Windows.Forms.Button add_task_button;
         private System.Windows.Forms.Timer check_task;
-        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -399,8 +399,7 @@ namespace TaskManager
         string person_name;
         int lv;
         int exp;//  exp/71*lv*lv
-        set_form ALLSET;
-        min_form MIN = new min_form();
+        set_form ALLSET = new set_form();
         string[] type_list = { "一次", "每日", "每……天", "每周", "每周……", "每月", "纪念日", "每年" };
         string[] weekday_list = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" };
         List<FlowLayoutPanel> Task_list = new List<FlowLayoutPanel>();
@@ -497,10 +496,14 @@ namespace TaskManager
         //*************** button set *****************//
         private void close_form_Click(object sender, EventArgs e)
         {
-
+            tag = 1;
             save();
-            MIN.Show();
-            Hide();          
+            MinimumSize = new Size(5, 5);
+            Height = 65;
+            Width = 60;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Text = " ";
+            Tag = 1;
         }
         private void add_task_button_Click(object sender, EventArgs e)
         {
@@ -508,14 +511,24 @@ namespace TaskManager
         }
         private void set_button_Click(object sender, EventArgs e)
         {
-            ALLSET = new set_form();
             ALLSET.Show();
         }
         private void updown_button_Click(object sender, EventArgs e)
         {
             person_inf.Visible = !person_inf.Visible;
             set_button_location();
-            task_panel.Focus();           
+            task_panel.Focus();
+            if (int.Parse((Tag.ToString())) == 1)
+            {
+                add_area.Visible = false;
+                Height = form_height;
+                Width = form_width;
+                MinimumSize = new Size(250, 400);
+                FormBorderStyle = FormBorderStyle.Sizable;
+                Text = "TaskManager";
+                Tag = 0;
+
+            }
         }
         void set_button_location()
         {
@@ -550,7 +563,8 @@ namespace TaskManager
             load();
             Main_container.Focus();
             find_end_task();
-            task_manage();           
+            task_manage();
+            updown_button_Click(null, null);
         }
         //*************** add_task_area set *********// 
         int string_stay_length(string str)
@@ -930,16 +944,6 @@ namespace TaskManager
         private void Main_form_Deactivate(object sender, EventArgs e)
         {
             save();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (MIN.Visible == false)
-                Show();
-            else
-            {
-                MIN.show_string("点击展开",0);
-            }
         }
     }
 }
